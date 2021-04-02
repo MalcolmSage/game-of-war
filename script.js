@@ -36,7 +36,7 @@ splitDeck = () => {
     decks.push(one,two)
 }
 
-DealCards = () => {
+dealCards = () => {
     fullDeck = [];
     for (let i = 0; i < suitArray.length; i++) {
       for (let j = 0; j < rankArray.length; j++){
@@ -48,6 +48,12 @@ DealCards = () => {
     splitDeck()
   }
 
+
+let playerOneName = prompt("Player One's Name: ")
+let playerTwoName = prompt("Player Two's Name: ")
+
+let playerOne = new Player(playerOneName)
+let playerTwo = new Player(playerTwoName)
 
 
 
