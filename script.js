@@ -49,28 +49,52 @@ dealCards = () => {
   }
 
 
+
+let round = []
+
+war = (playerOne, playerTwo) => {
+    
+    let surrender = false;
+    let oneDeck = playerOne.deck
+    let twoDeck = playerTwo.deck
+    console.log(oneDeck)
+    console.log(playerOne.deck)
+
+    while(!surrender) {
+        round.push(oneDeck[0]);
+        oneDeck.splice(0,1);
+        round.push(twoDeck[0]);
+        twoDeck.splice(0,1);
+        console.log(`${playerOne.name} played: ${round[0].rank} of ${round[0].suit}`); 
+        console.log(`${playerTwo.name} played: ${round[1].rank} of ${round[1].suit}`);
+        if (round[0].score > round[1].score) {
+            oneDeck.push(round[0], round[1]);
+            console.log(`${playerOne.name} won with: ${round[0].rank} of ${round[0].suit}`)
+            round = [];
+            if (twoDeck.length === 0) {
+                surrender = true
+            }
+        } else if (round[0].score < round[1].score) {
+            twoDeck.push(round[0], round[1]);
+            console.log(`${playerTwo.name} won with: ${round[1].rank} of ${round[1].suit}`)
+            round = [];
+            if (oneDeck.length === 0) {
+                surrender = true
+            }
+        } else {
+            console.log("war!")
+            surrender = true
+        }
+    }
+}
+
+
+dealCards()
 let playerOneName = prompt("Player One's Name: ")
 let playerTwoName = prompt("Player Two's Name: ")
 
 let playerOne = new Player(playerOneName)
 let playerTwo = new Player(playerTwoName)
 
-let round = []
-
-battle = (playerOne, playerTwo) => {
-    let oneDeck = playerOne.deck
-    let twoDeck = playerTwo.deck
-
-    round.push(oneDeck[0]);
-    oneDeck.splice(0,1);
-    round.push(twoDeck[0]);
-    twoDeck.splice(0,1);
-    console.log(`${playerOne.name} played: ${round[0].rank} of ${round[0].suit}`); 
-    console.log(`${playerTwo.name} played: ${round[1].rank} of ${round[1].suit}`);
-
-
-}
-
-
-battle(playerOne, playerTwo)
+war(playerOne, playerTwo)
 
