@@ -4,6 +4,7 @@ let rankArray = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Jack", "Queen", 
 let scoreArray = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 let fullDeck = [];
+let decks = [];
 
 
 class Card {
@@ -17,13 +18,36 @@ class Card {
 class Player {
     constructor(name) {
         this.name = name;
-        this.deck = []
+        this.deck = decks.pop()
     }
 }
 
-class Deck {
-    constructor(cards) {
-        this.length = cards.length;
-        this.cards = cards;
-    }
+shuffle = () => {
+    for(let i = fullDeck.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random()*(i+1));
+      [fullDeck[i], fullDeck[j]] = [fullDeck[j], fullDeck[i]];
+  }
 }
+
+splitDeck = () => {
+    let split = Math.ceil(fullDeck.length / 2);
+    let one = fullDeck.splice(0, split)
+    let two = fullDeck.splice(-split)
+    decks.push(one,two)
+}
+
+DealCards = () => {
+    fullDeck = [];
+    for (let i = 0; i < suitArray.length; i++) {
+      for (let j = 0; j < rankArray.length; j++){
+        let card = new Card(suitArray[i], rankArray[j], scoreArray[j])
+        fullDeck.push(card)   
+      }
+    }
+    shuffle()
+    splitDeck()
+  }
+
+
+
+
