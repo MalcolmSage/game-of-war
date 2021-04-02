@@ -139,7 +139,7 @@ war = (playerOne, playerTwo) => {
                     round = []
                     console.log(`WAR! ${playerOne.name} won with: ${warRound[0].rank} of ${warRound[0].suit}`);
                     warRound = []
-                    console.log("should be 0", warRound, round)
+                    // console.log("should be 0", warRound, round)
                     war = false
                     if (twoDeck < 4) {
                         console.log(twoDeck.length)
@@ -154,7 +154,7 @@ war = (playerOne, playerTwo) => {
                     round = []
                     console.log(`WAR! ${playerTwo.name} won with: ${warRound[1].rank} of ${warRound[1].suit}`); 
                     warRound = []
-                    console.log("should be 0", warRound, round)
+                    // console.log("should be 0", warRound, round)
                     war = false
                     if (oneDeck < 4) {
                         console.log(oneDeck.length)
@@ -164,7 +164,7 @@ war = (playerOne, playerTwo) => {
                 } else {
                     round.push(warRound[0], warRound[1])
                     warRound = []
-                    console.log("should be 0", warRound)
+                    // console.log("should be 0", warRound)
                     console.log("The War Continues!")
                 }
             }
@@ -172,9 +172,13 @@ war = (playerOne, playerTwo) => {
         } 
     }
     if (surrender) {
-        console.log(`${playerOne.name}: ${oneDeck.length}, ${playerTwo.name}: ${twoDeck.length}`)
         console.log("Game over", surrender)
         console.log(`${playerOne.name}: ${oneDeck.length}, ${playerTwo.name}: ${twoDeck.length}`)
+        if (oneDeck < twoDeck) {
+            console.log(`${playerTwo.name} won!`); 
+        } else if (oneDeck > twoDeck) {
+            console.log(`${playerOne.name} won!`);
+        }
     }
 }
 
