@@ -55,5 +55,22 @@ let playerTwoName = prompt("Player Two's Name: ")
 let playerOne = new Player(playerOneName)
 let playerTwo = new Player(playerTwoName)
 
+let round = []
 
+battle = (playerOne, playerTwo) => {
+    let oneDeck = playerOne.deck
+    let twoDeck = playerTwo.deck
+
+    round.push(oneDeck[0]);
+    oneDeck.splice(0,1);
+    round.push(twoDeck[0]);
+    twoDeck.splice(0,1);
+    console.log(`${playerOne.name} played: ${round[0].rank} of ${round[0].suit}`); 
+    console.log(`${playerTwo.name} played: ${round[1].rank} of ${round[1].suit}`);
+
+
+}
+
+
+battle(playerOne, playerTwo)
 
